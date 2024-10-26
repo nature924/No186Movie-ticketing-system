@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影院统计</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/adminStatistic.css"/>
+
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/echarts.js"></script>
+    <script src="/js/adminCinemaStatistic.js"></script>
+
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title" id="admin-name"></p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation"><a href="/admin/vip/manage"><i class="icon-user"></i> 会员管理</a></li>
+            <li role="presentation" ><a href="/admin/refund/manage"><i class="icon-hand-up"></i> 退票管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"  class="active"><a href="#"><i class="icon-bar-chart"></i> 影院统计</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <span class="title yellow-text">影院统计</span>
+        </div>
+        <div class="card table-container" id="schedule-rate-container">
+        </div>
+        <div class="card table-container" id="box-office-container">
+        </div>
+        <div class="card table-container" id="audience-price-container">
+        </div>
+        <div class="card table-container" id="place-rate-container">
+        </div>
+        <div class="card table-container" id="popular-movie-container">
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排片管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/adminSchedule.css"/>
+
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminScheduleManage.js"></script>
+
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title" id="admin-name"></p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation" class="active"><a href="#"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation"><a href="/admin/vip/manage"><i class="icon-user"></i> 会员管理</a></li>
+            <li role="presentation" ><a href="/admin/refund/manage"><i class="icon-hand-up"></i> 退票管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <span class="title gray-text">排片管理</span>
+        </div>
+        <div class="card" style="margin:20px 0;padding:20px;">
+            <div style="display: flex;justify-content: space-between">
+                <div>
+                <span>选择影厅  </span>
+                <select id="hall-select" class="form-control" style="display: inline-block;width: 180px;">
+                </select>
+                </div>
+                <div>
+                <span>选择日期  </span>
+                <input type="date" class="form-control" id="schedule-date-input" style="display: inline-block;width: 180px;">
+                </div>
+
+                <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#scheduleModal">新增排片</button>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 20px">
+            <div class="schedule-date-container">
+                <div class="schedule-date">2019/04/01</div>
+            </div>
+            <div class="schedule-container" >
+                <ul class="schedule-time-line">
+                    <li class="schedule-time-item">00:00</li>
+                    <li class="schedule-time-item">06:00</li>
+                    <li class="schedule-time-item">12:00</li>
+                    <li class="schedule-time-item">18:00</li>
+                    <li class="schedule-time-item">24:00</li>
+                </ul>
+                <ul class="schedule-item-line">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增排片</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-movie-input"><span class="error-text">*</span>电影名称</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-movie-input" class="form-control">
+                            </select>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-hall-input"><span class="error-text">*</span>放映影厅</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-hall-input" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-start-date-input"><span class="error-text">*</span>开始时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="schedule-start-date-input" placeholder="请选择开始时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-end-date-input"><span class="error-text">*</span>结束时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="schedule-end-date-input" placeholder="请选择结束时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-price-input"><span class="error-text">*</span>场次票价</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="schedule-price-input" placeholder="请输入票价">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="schedule-form-btn">确认</button>
+            </div>
+    </div>
+    </div>
+</div>
+<div class="modal fade" id="scheduleEditModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改排片</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-movie-input"><span class="error-text">*</span>电影名称</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-edit-movie-input" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-hall-input"><span class="error-text">*</span>放映影厅</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-edit-hall-input" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-edit-start-date-input"><span class="error-text">*</span>开始时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="schedule-edit-start-date-input" placeholder="请选择开始时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-edit-end-date-input"><span class="error-text">*</span>结束时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="schedule-edit-end-date-input" placeholder="请选择结束时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-edit-price-input"><span class="error-text">*</span>场次票价</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="schedule-edit-price-input" placeholder="请输入票价">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="schedule-edit-remove-btn">删除</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="schedule-edit-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购票</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userBuy.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userCost.css"/>
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/userCost.js"></script>
+
+</head>
+<body>
+<div class="nav-top-container">
+    <div class="nav-logo title">NJU-Se电影购票系统</div>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/user/home">首页</a></li>
+        <li role="presentation"><a href="/user/movie">电影</a></li>
+    </ul>
+    <div class="btn-group">
+        <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="avatar-sm" src="/images/defaultAvatar.jpg" />
+            <span class="gray-text" style="vertical-align: middle" id="user-name">&nbsp;<span class="caret"></span></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="/user/buy">电影票</a></li>
+            <li><a href="/user/member">卡包</a></li>
+            <li><a href="#">充值/消费记录</a></li>
+            <li><a href="/user/info">个人信息</a></li>
+            <li id="logout"><a href="#">登出</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="content-container">
+    <div class="card">
+        <div class="header">
+            <div class="title">
+                <select onchange="ShowHide(this.value)" style="width: 150px" class="form-control" >
+                    <option value="a">消费记录</option>
+                    <option value="b">充值记录</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>金额</th>
+                    <th>类型</th>
+                </tr>
+                </thead>
+                <tbody  id="history-list" >
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userHome.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/userHome.js"></script>
+
+</head>
+<body>
+    <div class="nav-top-container">
+        <div class="nav-logo title">NJU-Se电影购票系统</div>
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">首页</a></li>
+            <li role="presentation"><a href="/user/movie">电影</a></li>
+        </ul>
+        <div class="btn-group">
+            <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="avatar-sm" src="/images/defaultAvatar.jpg" />
+                <span class="gray-text" style="vertical-align: middle" id="user-name">&nbsp;<span class="caret"></span></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/user/buy">电影票</a></li>
+                <li><a href="/user/member">卡包</a></li>
+                <li><a href="/user/cost">充值/消费记录</a></li>
+                <li><a href="/user/info">个人信息</a></li>
+                <li id="logout"><a href="#">登出</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 可能不需要的功能 -->
+
+    <div class="content-container">
+        <div class="movie-contianer">
+            <div class="panel-header">
+              <p class="title primary-text">热映电影
+                    <a href="/user/movie">
+                        <span class="panel-more">全部</span>
+                    </a>
+              </p>
+            </div>
+            <ul class="movie-on-list card">
+                    <div class="movie-item">
+                        <a href="/user/movieDetail?id=10" target="_blank">
+                            <div class="movie-poster">
+                                <img class="poster-default" src="http://n.sinaimg.cn/translate/640/w600h840/20190312/ampL-hufnxfm4278816.jpg" />
+                                <div class="movie-overlay movie-overlay-bg">
+                                    <div class="movie-info">
+                                        <div class="movie-title movie-title-padding"
+                                             title="夏目友人帐" >夏目友人帐</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="movie-detail movie-detail-strong movie-sale">
+                            <a href="/user/movieDetail?id=10"
+                               class="active" target="_self" data-act="salePlayingMovie-click" data-val="{movieid:246061}" >购 票</a>
+                        </div>
+                        <div class="movie-ver"><i class="imax3d"></i></div>
+                    </div>
+                    <div class="movie-item">
+                        <a href="/user/movieDetail?id=11" target="_self" data-act="playingMovie-click" data-val="{movieid:1226516}">
+                            <div class="movie-poster">
+                                <img class="poster-default" src="https://i.loli.net/2019/06/20/5d0b77753f47132364.jpg" />
+                                <div class="movie-overlay movie-overlay-bg">
+                                    <div class="movie-info">
+                                        <div class="movie-title movie-title-padding"
+                                             title="秒速五厘米" >秒速五厘米</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="movie-detail movie-detail-strong movie-sale">
+                            <a href="/user/movieDetail?id=11"
+                               class="active" target="_self" data-act="salePlayingMovie-click" data-val="{movieid:1226516}" >购 票</a>
+                        </div>
+                        <div class="movie-ver"></div>
+                    </div>
+                    <div class="movie-item">
+                        <a href="/user/movieDetail?id=12" target="_self" data-act="playingMovie-click" data-val="{movieid:1207959}">
+                            <div class="movie-poster">
+                                <img class="poster-default" src="https://i.loli.net/2019/06/20/5d0b77890585f82489.jpg" />
+                                <div class="movie-overlay movie-overlay-bg">
+                                    <div class="movie-info">
+                                        <div class="movie-title movie-title-padding"
+                                             title="她和她的猫" >她和她的猫</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="movie-detail movie-detail-strong movie-sale">
+                            <a href="/user/movieDetail?id=12"
+                               class="active" target="_sekf" data-act="salePlayingMovie-click" data-val="{movieid:1207959}" >购 票</a>
+                        </div>
+                        <div class="movie-ver"><i class="imax3d"></i></div>
+                    </div>
+                    <div class="movie-item">
+                        <a href="/user/movieDetail?id=13" target="_self" data-act="playingMovie-click" data-val="{movieid:1279730}">
+                            <div class="movie-poster">
+                                <img class="poster-default" src="https://i.loli.net/2019/06/20/5d0b77e61bdf470098.jpg" />
+                                <div class="movie-overlay movie-overlay-bg">
+                                    <div class="movie-info">
+                                        <div class="movie-title movie-title-padding"
+                                             title="言叶之庭" >言叶之庭</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="movie-detail movie-detail-strong movie-sale">
+                            <a href="/user/movieDetail?id=13"
+                               class="active" target="_self" data-act="salePlayingMovie-click" data-val="{movieid:1279730}" >购 票</a>
+                        </div>
+                        <div class="movie-ver"><i class="m3d"></i></div>
+                    </div>
+                    <div class="movie-item">
+                        <a href="/user/movieDetail?id=14" target="_self" data-act="playingMovie-click" data-val="{movieid:346629}">
+                            <div class="movie-poster">
+                                <img class="poster-default" src="https://i.loli.net/2019/06/20/5d0b78588d53770781.jpg" />
+                                <div class="movie-overlay movie-overlay-bg">
+                                    <div class="movie-info">
+                                        <div class="movie-title movie-title-padding"
+                                             title="你的名字" >你的名字</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="movie-detail movie-detail-strong movie-sale">
+                            <a href="/user/movieDetail?id=14"
+                               class="active" target="_self" data-act="salePlayingMovie-click" data-val="{movieid:346629}" >购 票</a>
+                        </div>
+                        <div class="movie-ver"><i class="imax3d"></i></div>
+                    </div>
+            </ul>
+
+            <p class="title primary-text">即将上映</p>
+            <ul class="movie-off-list card">
+                <div class="movie-item">
+                    <a href="/user/movieDetail?id=10" target="_blank">
+                        <div class="movie-poster">
+                            <img class="poster-default" src="https://i.loli.net/2019/06/04/5cf5e841a59e943817.jpg" />
+                            <div class="movie-overlay movie-overlay-bg">
+                                <div class="movie-info">
+                                    <div class="movie-title movie-title-padding"
+                                         title="三番目の風" >「三番目の風」 2018夏巡宫城</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="movie-detail movie-detail-strong movie-sale">
+                        <a href="https://www.bilibili.com/video/av47227155?from=search&seid=2725690605205869188"
+                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:246061}" >预览</a>
+                    </div>
+                    <div class="movie-ver"><i class="imax3d"></i></div>
+                </div>
+                <div class="movie-item">
+                    <a href="https://www.bilibili.com/video/av22270313" target="_blank">
+                        <div class="movie-poster">
+                            <img class="poster-default" src="https://i.loli.net/2019/06/10/5cfe1d1d04e0945228.jpg" />
+                            <div class="movie-overlay movie-overlay-bg">
+                                <div class="movie-info">
+                                    <div class="movie-title movie-title-padding"
+                                         title="渋谷ブルース" > White High~渋谷ブルース</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="movie-detail movie-detail-strong movie-sale">
+                        <a href="https://www.bilibili.com/video/av22270313"
+                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:246061}" >预览</a>
+                    </div>
+                    <div class="movie-ver"><i class="imax3d"></i></div>
+                </div>
+                <div class="movie-item">
+                    <a href="https://www.bilibili.com/video/av4026603" target="_blank" data-act="playingMovie-click" data-val="{movieid:1207959}">
+                        <div class="movie-poster">
+                            <img class="poster-default" src="https://i.loli.net/2019/06/10/5cfe1d80495f245487.jpg" />
+                            <div class="movie-overlay movie-overlay-bg">
+                                <div class="movie-info">
+                                    <div class="movie-title movie-title-padding"
+                                         title="悲しみの忘れ方 " >悲しみの忘れ方 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="movie-detail movie-detail-strong movie-sale">
+                        <a href="https://www.bilibili.com/video/av4026603"
+                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:1207959}" >预览</a>
+                    </div>
+                    <div class="movie-ver"><i class="imax3d"></i></div>
+                </div>
+                <div class="movie-item">
+                    <a href="https://www.bilibili.com/video/av26650816?from=search&seid=10446136418487302749" target="_blank" data-act="playingMovie-click" data-val="{movieid:1279730}">
+                        <div class="movie-poster">
+                            <img class="poster-default" src="https://i.loli.net/2019/06/10/5cfe216fa11fa75510.jpg" />
+                            <div class="movie-overlay movie-overlay-bg">
+                                <div class="movie-info">
+                                    <div class="movie-title movie-title-padding"
+                                         title="2017 真夏全国巡演 FINAL！东京巨蛋演唱会" >2017 真夏全国巡演 FINAL！东京巨蛋演唱会</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="movie-detail movie-detail-strong movie-sale">
+                        <a href="https://www.bilibili.com/video/av26650816?from=search&seid=10446136418487302749"
+                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:1279730}" >预览</a>
+                    </div>
+                    <div class="movie-ver"><i class="m3d"></i></div>
+                </div>
+                <div class="movie-item">
+                    <a href="https://www.bilibili.com/video/av21351430?from=search&seid=10666165360896019150" target="_blank" data-act="playingMovie-click" data-val="{movieid:346629}">
+                        <div class="movie-poster">
+                            <img class="poster-default" src="https://i.loli.net/2019/06/10/5cfe2252e0bbe66309.jpg" />
+                            <div class="movie-overlay movie-overlay-bg">
+                                <div class="movie-info">
+                                    <div class="movie-title movie-title-padding"
+                                         title="桥本奈奈未毕业演唱会" >五周年LIVE Day1 桥本奈奈未毕业演唱会 全场</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="movie-detail movie-detail-strong movie-sale">
+                        <a href="https://www.bilibili.com/video/av21351430?from=search&seid=10666165360896019150"
+                           class="active" target="_blank" data-act="salePlayingMovie-click" data-val="{movieid:346629}" >购 票</a>
+                    </div>
+                    <div class="movie-ver"><i class="imax3d"></i></div>
+                </div>
+            </ul>
+        </div>
+        <div class="statistic-container">
+            <p class="title primary-text">票房统计</p>
+            <ul class="top-sell-list card">
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+            </ul>
+            <p class="title primary-text">最受欢迎影星</p>
+            <ul class="top-expectation-list card">
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+                <div class="statistic-item">
+                    <span>电影1</span>
+                    <span class="error-text">99</span>
+                </div>
+            </ul>
+        </div>
+    <!</div>
+</body>
+</html>

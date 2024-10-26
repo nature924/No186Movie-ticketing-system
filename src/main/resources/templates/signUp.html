@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- 引入js脚本文件 -->
+    <script src="/js/signUp.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+
+    <script src="/js/request.js"></script>
+</head>
+<body>
+<div id="main-container">
+    <div id="login-container" class="card">
+        <h3 class="title">注册</h3>
+        <form id="login-form">
+            <div class="input-interval">
+                <div class="input-group" id="basic-addon1">
+                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                    <input id="signUp-name" type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1">
+                </div>
+                <p id="signUp-name-error" class="notice">用户名长度应在4-10位内</p>
+            </div>
+
+            <div class="input-interval">
+                <div class="input-group " id="basic-addon2">
+                    <span class="input-group-addon"><i class="icon-lock"></i></span>
+                    <input id="signUp-password" type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
+                </div>
+                <p id="signUp-password-error" class="notice">密码长度应在6-12位内</p>
+            </div>
+
+            <div class="input-interval">
+                <div class="input-group " id="basic-addon3">
+                    <span class="input-group-addon"><i class="icon-lock"></i></span>
+                    <input id="signUp-second-password" type="password" class="form-control" placeholder="请再次确认密码" aria-describedby="basic-addon3">
+                </div>
+                <p id="signUp-second-password-error" class="notice">请再次输入密码</p>
+            </div>
+
+            <div class="form-group">
+                <p>已有账号? <a href="/index">&nbsp;立即登录</a>
+            </div>
+
+            <button id="signUp-btn" type="button" class="btn btn-primary input-interval btn-block">注 册</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

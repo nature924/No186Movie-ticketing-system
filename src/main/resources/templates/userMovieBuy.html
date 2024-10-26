@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影详情</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userMovieBuy.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/cinemaHall.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/movieDetail.js"></script>
+    <script src="/js/userMovieBuy.js"></script>
+</head>
+<body>
+<div class="nav-top-container">
+    <div class="nav-logo title">NJU-Se电影购票系统</div>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/user/home">首页</a></li>
+        <li role="presentation" class="active"><a href="/user/movie">电影</a></li>
+    </ul>
+    <div class="btn-group">
+        <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            <img class="avatar-sm" src="/images/defaultAvatar.jpg"/>
+            <span class="gray-text" style="vertical-align: middle">用户A&nbsp;<span class="caret"></span></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="/user/buy">电影票</a></li>
+            <li><a href="/user/member">卡包</a></li>
+            <li><a href ="/user/cost">充值/消费记录</a></li>
+            <li><a href="/user/info">个人信息</a></li>
+            <li id="logout"><a href="#">登出</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <div class="card col-md-12">
+        <div class="col-md-10 col-md-offset-1" id="seat-state">
+            <ol class="breadcrumb col-md-12">
+                <li class="col-md-4"><a href="#" class="active">1. 选座</a></li>
+                <li class="col-md-4">2. 确认订单，支付</li>
+                <li class="col-md-4">3. 支付成功</li>
+            </ol>
+
+            <div class="seat-content col-md-12">
+                <div class="col-md-8 content-card card" id="hall-card">
+                </div>
+
+                <div class="col-md-4 movie-detail">
+                    <div class="line">
+                        <div class="name img-wrapper">
+                            <img id="movie-img">
+                        </div>
+                        <div class="info">
+                            <div id="movie-name"></div>
+                            <div>语言：<span id="movie-language"></span></div>
+                            <div>类型：<span id="movie-type"></span></div>
+                            <div>片长：<span id="movie-length"></span>分钟</div>
+                            <div>票价：<span id="schedule-fare"></span>元/张</div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="line">
+                        <div class="name">影厅：</div>
+                        <div id="schedule-hall-name"></div>
+                    </div>
+                    <div class="line">
+                        <div class="name">场次：</div>
+                        <div id="schedule-time"></div>
+                    </div>
+                    <div class="line">
+                        <div class="name">座位：</div>
+                        <div id="seat-detail">还未选择座位</div>
+                    </div>
+                    <hr/>
+                    <button id="order-confirm-btn" class="btn btn-primary" onclick="orderConfirmClick()"
+                            disabled="disabled">
+                        确认下单
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1" id="order-state" style="display: none;">
+            <ol class="breadcrumb col-md-12">
+                <li class="col-md-4">1. 选座</li>
+                <li class="col-md-4"><a href="#" class="active">2. 确认订单，支付</a></li>
+                <li class="col-md-4">3. 支付成功</li>
+            </ol>
+
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>电影</th>
+                    <th>场次</th>
+                    <th>票数/座位</th>
+                    <th>单价(元)</th>
+                    <th>总价(元)</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>
+                        <div id="order-movie-name"></div>
+                    </td>
+                    <td>
+                        <div id="order-schedule-hall-name"></div>
+                        <div id="order-schedule-time"></div>
+                    </td>
+                    <td id="order-tickets">
+                    </td>
+                    <td id="order-schedule-fare"></td>
+                    <td><b id="order-total"></b></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="order-info">
+                <div>
+                    优惠券：
+                    <select style="height: 30px;" id="order-coupons"
+                            onchange="changeCoupon(this.options.selectedIndex)">
+                    </select>
+                </div>
+
+                <div>
+                    <div class="item" id="order-footer-total"></div>
+                    <div class="item" id="order-discount"></div>
+                </div>
+            </div>
+
+            <hr class="dashed-line"/>
+
+            <div class="order-footer">
+                <div class="item">实付款：<b id="order-actual-total"></b></div>
+                <button class="item btn btn-primary" data-toggle="modal" data-target="#buyModal">确认订单，立即支付</button>
+            </div>
+        </div>
+
+        <div class="col-md-10 col-md-offset-1" id="success-state" style="display: none;">
+            <ol class="breadcrumb col-md-12">
+                <li class="col-md-4">1. 选座</li>
+                <li class="col-md-4">2. 确认订单，支付</li>
+                <li class="col-md-4"><a href="#" class="active">3. 支付成功</a></li>
+            </ol>
+
+            <div class="success-notice" style="text-align: center">
+                <img src="/images/success.png"/>
+                <div class="hint">支付成功，至<a class="hint" href="/user/buy">“我的电影票”</a>页面查看</div>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1" id="fail-state" style="display: none;">
+            <ol class="breadcrumb col-md-12">
+                <li class="col-md-4">1. 选座</li>
+                <li class="col-md-4">2. 确认订单，支付</li>
+                <li class="col-md-4"><a href="#" class="active">3. 支付失败</a></li>
+            </ol>
+
+            <div class="success-notice" style="text-align: center">
+                <img src="/images/fail.png"/>
+                <div class="hint">支付失败，请充值会员卡余额，至<a class="hint" href="/user/member">“我的卡包”</a>页面查看</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">付款</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" style="margin-bottom: 20px;">
+                    <li role="presentation" class="active" id="member-pay" onclick="switchPay(0)"><a href="#">会员卡支付</a></li>
+                    <li role="presentation" id="nonmember-pay" onclick="switchPay(1)"><a href="#">银行卡支付</a></li>
+                </ul>
+
+                <div id="modal-body-member" style="margin-bottom: 20px;">
+                    <div id="member-balance"><b>会员卡余额：</b>&nbsp;&nbsp;90元</div>
+                </div>
+
+                <div id="modal-body-nonmember" style="display: none;">
+                    <div class="form-group">
+                        <label for="userBuy-cardNum">银行卡号</label>
+                        <input class="form-control" id="userBuy-cardNum" placeholder="请输入银行卡号">
+                        <p id="userBuy-cardNum-error" class="notice">银行卡号不能为空</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="userBuy-cardPwd">密码</label>
+                        <input type="password" class="form-control" id="userBuy-cardPwd" placeholder="请输入密码">
+                        <p id="userBuy-cardPwd-error" class="notice">密码不能为空</p>
+                    </div>
+                </div>
+
+                <div id="pay-amount"><b>金额：</b>&nbsp;&nbsp;90元</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" onclick="payConfirmClick()">确认支付</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

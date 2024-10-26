@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影管理</title>
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/movieList.css"/>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminMovieManage.js"></script>
+
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title" id="admin-name"></p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation"><a href="/admin/vip/manage"><i class="icon-user"></i> 会员管理</a></li>
+            <li role="presentation" ><a href="/admin/refund/manage"><i class="icon-hand-up"></i> 退票管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <span class="title gray-text">已上架电影</span>
+            <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#movieModal"><i class="icon-plus-sign"></i> 上架电影</button>
+        </div>
+        <ul class="movie-on-list">
+        </ul>
+    </div>
+</div>
+<div class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="movieModalLabel">新增电影</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-name-input"><span class="error-text">*</span>电影名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="movie-name-input" placeholder="请输入电影名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-date-input"><span class="error-text">*</span>上映时间</label>
+                        <div class="col-sm-10">
+                        <input type="date" class="form-control" id="movie-date-input" placeholder="请输入电影上映时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-img-input"><span class="error-text">*</span>电影海报</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-img-input">
+                        <p class="help-block">目前直接填写外部url即可</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-description-input">剧情介绍</label>
+                        <div class="col-sm-10">
+                        <textarea rows="3" class="form-control" id="movie-description-input" placeholder="请输入剧情介绍"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-type-input">电影类型</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-type-input" placeholder="请输入电影类型">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-length-input">片长(分钟)</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-length-input" placeholder="请输入电影片长">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-country-input">国家/地区</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-country-input" placeholder="请输入电影国家/地区">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-language-input">电影语言</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="movie-language-input" placeholder="请输入电影语言">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-director-input">电影导演</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-director-input" placeholder="请输入电影导演">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-star-input">电影主演</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-star-input" placeholder="请输入电影主演">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="movie-writer-input">电影编剧</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="movie-writer-input" placeholder="请输入电影编剧">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="movie-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

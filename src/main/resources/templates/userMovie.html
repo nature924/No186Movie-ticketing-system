@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/movieList.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userMovie.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/userMovie.js"></script>
+</head>
+<body>
+    <div class="nav-top-container">
+        <div class="nav-logo title">NJU-Se电影购票系统</div>
+        <ul class="nav nav-pills">
+            <li role="presentation"><a href="/user/home">首页</a></li>
+            <li role="presentation" class="active"><a href="#">电影</a></li>
+        </ul>
+        <div class="btn-group">
+            <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="avatar-sm" src="/images/defaultAvatar.jpg" />
+                <span class="gray-text" style="vertical-align: middle" id="user-name"> &nbsp;<span class="caret"></span></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/user/buy">电影票</a></li>
+                <li><a href="/user/member">卡包</a></li>
+                <li><a href ="/user/cost">充值/消费记录</a></li>
+                <li><a href="/user/info">个人信息</a></li>
+                <li id="logout"><a href="#">登出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="filler-container card">
+            <div class="input-group" style="width: 800px">
+                <input type="text" class="form-control" id="search-input" placeholder="请输入关键字">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" id="search-btn" type="button">搜索</button>
+                </span>
+            </div>
+            <!--<ul class="filler-item" style="display: flex">-->
+                <!--<span>类型：</span>-->
+                <!--<li><a class="active">全部</a></li>-->
+                <!--<li><a>科幻</a></li>-->
+                <!--<li><a>喜剧</a></li>-->
+                <!--<li><a>科幻</a></li>-->
+                <!--<li><a>喜剧</a></li>-->
+                <!--<li><a>todo筛选</a></li>-->
+            <!--</ul>-->
+            <!--<ul class="filler-item" style="display: flex">-->
+                <!--<span>状态：</span>-->
+                <!--<li><a class="active">全部</a></li>-->
+                <!--<li><a>上映中</a></li>-->
+                <!--<li><a>未上映</a></li>-->
+                <!--<li><a>已下架</a></li>-->
+            <!--</ul>-->
+        </div>
+        <ul class="movie-on-list">
+        </ul>
+    </div>
+</body>
+</html>

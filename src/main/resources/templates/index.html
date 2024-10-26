@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <!-- 引入js脚本文件 -->
+    <script src="/js/request.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+<body>
+<div id="main-container">
+    <div class="card" id="login-container">
+        <h3 class="title">登录</h3>
+        <form id="login-form">
+            <div class="input-interval">
+                <div class="input-group" id="basic-addon1">
+                    <span class="input-group-addon"><i class="icon-user"></i></span>
+                    <input id="index-name" type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1">
+                </div>
+                <p id="index-name-error" class="notice">用户名不能为空</p>
+            </div>
+
+            <div class="input-interval">
+                <div class="input-group" id="basic-addon2">
+                    <span class="input-group-addon"><i class="icon-lock"></i></span>
+                    <input id="index-password" type="password" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
+                </div>
+                <p id="index-password-error" class="notice">密码不能为空</p>
+            </div>
+
+            <div class="form-group">
+                <p>还未注册过? <a href="/signUp">&nbsp;立即注册</a>
+            </div>
+
+            <button id="login-btn" type="button" class="btn btn-primary input-interval btn-block">登 录</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

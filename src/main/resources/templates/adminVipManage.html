@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/adminVipManage.css"/>
+
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminVipManage.js"></script>
+
+</head>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title" id="admin-name"></p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation" ><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation" class="active"><a href="#"><i class="icon-user"></i> 会员管理</a></li>
+            <li role="presentation" ><a href="/admin/refund/manage"><i class="icon-hand-up"></i> 退票管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <span class="title gray-text">会员卡充值优惠管理</span>
+            <div style="text-align:left">
+                <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#strategyModal"><i class="icon-plus-sign"></i> 新增会员卡充值优惠策略</button>
+                <button type="button" id="strategy-edit-btn" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#strategyEditModal"><i class="icon-refresh"></i> 修改会员卡充值优惠策略</button>
+                <button type="button" id="strategy-drop-btn" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#strategyDeleteModal"><i class="icon-remove"></i> 删除会员卡优惠策略</button>
+            </div>
+        </div>
+        <div class="content-strategy">
+
+        </div>
+        <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+        <div class="content-header">
+            <span class="title gray-text">会员名单</span>
+        </div>
+        根据消费总额筛选会员:
+        <input type="text" id="vip-limit-input" placeholder="请输入消费金额">
+        <button type="button" class="btn btn-primary" id="select-vip-btn"><i class="icon-plus-check"></i> 筛选会员</button>
+        <button type="button" class="btn btn-primary" id="all-vip-btn"><i class="icon-plus-share"></i> 全部会员</button>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>昵称</th>
+                    <th>消费总计</th>
+                </tr>
+                </thead>
+                <tbody id="vip-list">
+                </tbody>
+            </table>
+        </div>
+        <select id="coupon-id-input" class="form-control" style="width: 300px">选择优惠券\</select>
+        <button type="button" class="btn btn-primary" id="send-coupon-btn"><i class="icon-plus-gift"></i> 赠送优惠券</button>
+        <hr style=" height:2px;border:none;border-top:2px dotted #185598;" />
+        <div class="content-header">
+            <span class="title gray-text">所有有效优惠券</span>
+        </div>
+        <div id="all-coupon-list">
+
+
+    </div>
+</div>
+<div class="modal fade" id="strategyModal" tabindex="-1" role="dialog" aria-labelledby="strategyModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增会员卡充值优惠策略</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-limit-input"><span class="error-text">*</span>满</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="strategy-limit-input" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-gift-input"><span class="error-text">*</span>送</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="strategy-gift-input" >
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="strategy-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="strategyEditModal" tabindex="-1" role="dialog" aria-labelledby="strategyEditModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改会员卡充值优惠策略</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-edit-id-input"><span class="error-text">*</span>选择会员卡充值优惠策略id</label>
+                        <div class="col-sm-10">
+                            <select id="strategy-edit-id-input" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-edit-limit-input"><span class="error-text">*</span>满</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="strategy-edit-limit-input" >
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-edit-gift-input"><span class="error-text">*</span>减</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="strategy-edit-gift-input" >
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="strategy-update-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="strategyDeleteModal" tabindex="-1" role="dialog" aria-labelledby="strategyDeleteModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">删除会员卡充值优惠策略</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="strategy-drop-id-input"><span class="error-text">*</span>选择会员卡充值优惠策略id</label>
+                        <div class="col-sm-10">
+                            <select id="strategy-drop-id-input" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="strategy-delete-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

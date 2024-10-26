@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影详情</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/movieDetail.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userMovieDetail.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/movieDetail.js"></script>
+    <script src="/js/userMovieDetail.js"></script>
+</head>
+<body>
+<div class="nav-top-container">
+    <div class="nav-logo title">NJU-Se电影购票系统</div>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/user/home">首页</a></li>
+        <li role="presentation" class="active"><a href="/user/movie">电影</a></li>
+    </ul>
+    <div class="btn-group">
+        <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            <img class="avatar-sm" src="/images/defaultAvatar.jpg"/>
+            <span class="gray-text" style="vertical-align: middle">用户A&nbsp;<span class="caret"></span></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="/user/buy">电影票</a></li>
+            <li><a href="/user/member">卡包</a></li>
+            <li><a href ="/user/cost">充值/消费记录</a></li>
+            <li><a href="/user/info">个人信息</a></li>
+            <li id="logout"><a href="#">登出</a></li>
+        </ul>
+    </div>
+</div>
+<div class="content-container">
+    <div class="content-header">
+        <img id="movie-img">
+        <div class="movie-basic-info">
+            <div><span class="title" id="movie-name"></span></div>
+            <div style="margin-top: 20px;"><span>简 介 ：</span><span id="movie-description" class="gray-text"></span>
+            </div>
+            <div><span>上 映 ：</span><span id="movie-startDate"></span></div>
+            <div><span>类 型 ：</span><span id="movie-type"></span></div>
+            <div><span>地 区 ：</span><span id="movie-country"></span></div>
+            <div><span>语 言 ：</span><span id="movie-language"></span></div>
+            <div><span>导 演 ：</span><span id="movie-director"></span></div>
+            <div><span>主 演 ：</span><span id="movie-starring"></span></div>
+            <div><span>编 剧 ：</span><span id="movie-writer"></span></div>
+            <div class="movie-operations">
+                <button type="button" class="btn btn-primary" id="like-btn"><i class='icon-heart'></i><span> 想 看</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="seesion-container">
+        <h1 id="none-hint" style="display: none;">暂无排片</h1>
+        <div id="schedule" style="display: none;">
+            <ul class="nav nav-tabs" id="schedule-date">
+            </ul>
+
+            <div class="table-wrapper">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>放映开始时间</th>
+                        <th>放映结束时间</th>
+                        <th>放映厅</th>
+                        <th>票价（元）</th>
+                        <th>选座购票</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="schedule-body">
+                    </tbody>
+                </table>
+                <h4 id="date-none-hint" style="display: none;">所选日期暂无排片</h4>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

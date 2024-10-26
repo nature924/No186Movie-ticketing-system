@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购票</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userBuy.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/bossManage.js"></script>
+
+</head>
+<body>
+<div class="nav-top-container">
+<div class="nav-logo title">NJU-Se电影购票系统</div>
+<div class="btn-group">
+    <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img class="avatar-sm" src="/images/defaultAvatar.jpg" />
+        <span class="gray-text" style="vertical-align: middle" id="user-name">&nbsp;<span class="caret"></span></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li id="logout"><a href="#">登出</a></li>
+    </ul>
+</div>
+
+</div>
+<div class="card">
+    <div class="header">
+        <div class="title">
+            影院管理员
+        </div>
+        <div style="text-align:right">
+            <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#adminModal"><i class="icon-plus-sign"></i> 新增管理员</button>
+            <button type="button" id="admin-edit-btn" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#adminEditModal"><i class="icon-refresh"></i> 修改管理员</button>
+            <button type="button" id="admin-drop-btn" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#adminDeleteModal"><i class="icon-remove"></i> 删除管理员</button>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>用户名</th>
+                <th>密码</th>
+            </tr>
+            </thead>
+            <tbody id="admin-list">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+
+                    <div class="input-interval">
+                        <div class="input-group" id="basic-addon1">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="admin-name" type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1">
+                        </div>
+                        <p id="admin-name-error" class="notice">用户名长度应在4-10位内</p>
+                    </div>
+
+                    <div class="input-interval">
+                        <div class="input-group " id="basic-addon2">
+                            <span class="input-group-addon"><i class="icon-lock"></i></span>
+                            <input id="admin-password" type="text" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
+                        </div>
+                        <p id="admin-password-error" class="notice">密码长度应在6-12位内</p>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="admin-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="adminEditModal" tabindex="-1" role="dialog" aria-labelledby="adminEditModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="admin-edit-id-input"><span class="error-text">*</span>管理员id</label>
+                        <div class="col-sm-10">
+                            <select id="admin-edit-id-input" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-interval">
+                        <div class="input-group" id="basic-addon4">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="admin-edit-name" type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1">
+                        </div>
+                        <p id="admin-edit-name-error" class="notice">用户名长度应在4-10位内</p>
+                    </div>
+
+                    <div class="input-interval">
+                        <div class="input-group " id="basic-addon5">
+                            <span class="input-group-addon"><i class="icon-lock"></i></span>
+                            <input id="admin-edit-password" type="text" class="form-control" placeholder="请输入密码" aria-describedby="basic-addon2">
+                        </div>
+                        <p id="admin-edit-password-error" class="notice">密码长度应在6-12位内</p>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="admin-update-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="adminDeleteModal" tabindex="-1" role="dialog" aria-labelledby="adminDeleteModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">删除管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="admin-drop-id-input"><span class="error-text">*</span>管理员id</label>
+                        <div class="col-sm-10">
+                            <select id="admin-drop-id-input" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="admin-delete-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
